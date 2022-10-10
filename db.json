@@ -1,0 +1,28 @@
+{
+    "appointment": [
+      { "id": 1, 
+        "date": "17.09.2022", 
+        "patientId": 1 }
+    ],
+    "patient": [
+      { "id": 1, 
+        "name": "Deneme", 
+        "surname": "DENEME",
+        "phoneNumber" : 5555555555,
+        "processIds" : [1 , 2]
+    }
+    ],
+    "process": [
+        { "id": 1,
+        "complaint": "grip",
+        "treatment": "vitamin takviye",
+        "medicine": ["Dvit", "CVit"] 
+          },
+        { "id": 2,
+          "complaint": "influenza",
+          "treatment": "ayakta",
+          "medicine": ["Dvit", "CVit", "augmentin"] 
+          }
+        
+        ]
+  }

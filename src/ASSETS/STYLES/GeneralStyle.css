@@ -1,0 +1,46 @@
+.AppBar {
+	background-color: #7e57c2 !important;
+	box-shadow: 0 0 20px 20px #b39ddbe0 !important;
+	border-radius: 20px;
+}
+
+.NavbarLinkBox {
+	margin-left: -25%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 40px;
+}
+
+.NavLinks {
+	text-shadow: 0 0 50px #b39ddbe0 !important;
+	text-decoration: none;
+	font-size: 1.2rem;
+	color: beige;
+	transition: 2ms ease-in-out;
+}
+
+.NavLinks:hover {
+	color: rgb(239, 225, 17);
+}
+
+.closeNavMenu {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-start;
+}
+
+.closeNavLinks {
+	text-align: left;
+	margin-top: 10px;
+	text-decoration: none;
+	font-size: 1rem;
+	color: black;
+}
+
+.ListTableContainer {
+	background-color: #7e57c297;
+	box-shadow: 0 0 10px 10px #393049cc;
+	border-radius: 20px;
+}

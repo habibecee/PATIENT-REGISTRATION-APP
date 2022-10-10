@@ -1,0 +1,58 @@
+TEKNOLOJİLER:
+
+1. FAKE API JSON-SERVER --- npm install json-server
+2. İSTEKLER İÇİN AXIOS  --- npm install axios
+3. SAYFALAMA REACT-ROUTER-DOM 6 --- npm install react-router-dom@6
+4. STATE YÖNETİMİ REDUX --- npm install redux react-redux
+5. UI(USER INTERFACE) MATERIAL UI - BOOTSTRAP YERİNE --- 
+>>> MATERYALLER   :    npm install @mui/material @emotion/react @emotion/styled
+>>> ROBOTOFONT    :    npm install @fontsource/roboto
+>>> MATERIAL ICONS:    npm install @mui/icons-material
+
+6. 
+
+
+İŞ KURALLARI:
+
+1. PROJEDE 2 SAYFA OLACAK. 
+
+>>RANDEVULAR LİSTELENECEK, 
+>>RANDEVU EKLENEBİLECEK, 
+>>İPTAL EDİLEBİLECEK, 
+>>GÜNCELLENEBİLECEK
+
+
+2. RANDEVU EKLENDİĞİNDE HASTA OTOMATİK OLARAK EKLENECEK
+
+
+3. RANDEVUDA BULUNACAK BİLGİLER; 
+{
+    RANDEVU ID'si, 
+    TARİH, 
+    HASTA ID'si,
+    
+}
+
+
+4. HASTADA BULUNACAK BİLGİLER; 
+
+{
+    HASTA ID'si, 
+    ADI, 
+    SOYADI, 
+    TELEFON NUMARASI (TC YERİNE), 
+    İŞLEMLER: [işlem id'si], 
+    
+}
+
+
+5. İŞLEMLER; 
+
+{
+    İŞLEM ID'si, 
+    ŞİKAYET, 
+    UYGULANAN TEDAVİ, 
+    YAZILAN İLAÇLAR,
+
+}
+
