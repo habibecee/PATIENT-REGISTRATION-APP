@@ -10,7 +10,14 @@
         "surname": "DENEME",
         "phoneNumber" : 5555555555,
         "processIds" : [1 , 2]
-    }
+    },
+    { "id": 2, 
+      "name": "Patient 2", 
+      "surname": "patient 2",
+      "phoneNumber" : 5555555522,
+      "processIds" : [1 ]
+  }
+
     ],
     "process": [
         { "id": 1,

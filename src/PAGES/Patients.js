@@ -1,13 +1,89 @@
-import React from "react";
+import "../ASSETS/STYLES/GeneralStyle.css";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Header from "../COMPANENTS/Header";
+import Loading from "../COMPANENTS/Loading";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+
+import axios from "axios";
+import { Button } from "@mui/material";
 
 const Patients = (props) => {
+	const navigate = useNavigate();
+	const [patients, setPatients] = useState(null);
+	// useState() içinde; eğer bir input için kullanılacaksa boş string ('')
+	//  -çünkü inputun değeri genelde stringdir- vermek daha mantıklı iken,
+	//  bir dizi için kullanılacaksa ya boş dizi [] ya da null verilmelidir.
+	// Yani veri çekilecek işleme göre ayarlanmalı.
+
+	useEffect(() => {
+		axios
+			.get("http://localhost:3004/patient")
+			.then((res) => {
+				setPatients(res.data);
+			})
+			.catch((err) => console.log("patientErr", err));
+	}, []);
+
+	if (patients === null) {
+		return <Loading />;
+	}
+
 	return (
 		<div>
 			<Header />
 			<div className="PageName">
 				<h1> PATIENTS LIST </h1>
 			</div>
+			<div
+				style={{
+					display: "flex",
+					alignItems: "center",
+					justifyContent: "flex-end",
+					marginBottom: "30px",
+					marginRight: "20px",
+				}}
+			>
+				<Button
+					onClick={() => navigate("/add-patient")}
+					variant="contained"
+					className="AddBtn"
+				>
+					ADD PATIENT
+				</Button>
+			</div>
+			<TableContainer className="ListTableContainer">
+				<Table sx={{ minWidth: "650px" }} aria-label="simple table">
+					<TableHead sx={{ backgroundColor: "#BFA2DB" }}>
+						<TableRow>
+							<TableCell align="center"> NAME </TableCell>
+							<TableCell align="center"> SURNAME</TableCell>
+							<TableCell align="center">PHONE NUMBER </TableCell>
+							<TableCell align="center">PROCESS </TableCell>
+						</TableRow>
+					</TableHead>
+					<TableBody sx={{ backgroundColor: " #F0D9FF" }}>
+						{patients.map((patient) => {
+							return (
+								<TableRow
+									key={patient.id}
+									sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+								>
+									<TableCell align="center">{patient.name}</TableCell>
+									<TableCell align="center">{patient.surname}</TableCell>
+									<TableCell align="center">{patient.phoneNumber}</TableCell>
+									<TableCell align="center">BUTTONS</TableCell>
+								</TableRow>
+							);
+						})}
+					</TableBody>
+				</Table>
+			</TableContainer>
 		</div>
 	);
 };

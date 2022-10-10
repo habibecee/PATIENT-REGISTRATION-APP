@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../ASSETS/STYLES/GeneralStyle.css";
 import Header from "../COMPANENTS/Header";
+import Loading from "../COMPANENTS/Loading";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -8,7 +9,6 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import axios from "axios";
-import Loading from "../ASSETS/IMAGES/Loading.gif";
 
 const Home = (props) => {
 	const [appointments, setAppointments] = useState(null);
@@ -30,26 +30,7 @@ const Home = (props) => {
 	}, []);
 
 	if (appointments === null || patients === null) {
-		return (
-			<div>
-				<Header />
-				<div className="PageName">
-					<h1> HOME </h1>
-				</div>
-				<img
-					src={Loading}
-					style={{
-						width: "300px",
-						height: "300px",
-						display: "flex",
-						flexDirection: "column",
-						alignItems: "center",
-						justifyContent: "center",
-						marginLeft: "40%",
-					}}
-				/>
-			</div>
-		);
+		return <Loading />;
 	}
 
 	return (
@@ -63,8 +44,8 @@ const Home = (props) => {
 					<TableHead sx={{ backgroundColor: "#BFA2DB" }}>
 						<TableRow>
 							<TableCell align="center"> DATE </TableCell>
-							<TableCell align="center"> PATIENT'S NAME </TableCell>
-							<TableCell align="center"> PATIENT'S SURNAME</TableCell>
+							<TableCell align="center"> NAME </TableCell>
+							<TableCell align="center"> SURNAME</TableCell>
 							<TableCell align="center">PHONE NUMBER </TableCell>
 							<TableCell align="center">PROCESS </TableCell>
 						</TableRow>

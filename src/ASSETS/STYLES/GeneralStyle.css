@@ -1,3 +1,5 @@
+/* Header.js styles */
+
 .AppBar {
 	background-color: #7e57c2 !important;
 	box-shadow: 0 0 20px 20px #b39ddbe0 !important;
@@ -5,7 +7,7 @@
 }
 
 .NavbarLinkBox {
-	margin-left: -25%;
+	margin-left: -20%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -39,8 +41,36 @@
 	color: black;
 }
 
+/* Patient.js & Home.js styles */
+
 .ListTableContainer {
 	background-color: #7e57c297;
 	box-shadow: 0 0 10px 10px #393049cc;
 	border-radius: 20px;
+}
+
+/* Patient.js styles */
+
+.AddBtn {
+	box-shadow: 0 0 5px 5px #7475ac !important;
+	background-color: #554994b8 !important;
+	transition: 1s ease !important;
+	color: #fff;
+	border-radius: 10px !important;
+}
+
+.AddBtn:hover {
+	background-color: #8e8fd1 !important;
+	box-shadow: 0 0 5px 5px #6c5eb5c0 !important;
+	color: black !important;
+}
+
+/* AddPatient.js styles */
+
+.formDiv {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 20px;
 }
