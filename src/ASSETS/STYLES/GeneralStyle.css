@@ -74,3 +74,17 @@
 	justify-content: center;
 	gap: 20px;
 }
+
+.SaveBtn {
+	box-shadow: 0 0 5px 5px #70af85 !important;
+	background-color: #5f7161 !important;
+	transition: 1s ease !important;
+	color: #fff;
+	border-radius: 10px !important;
+}
+
+.SaveBtn:hover {
+	background-color: #70af85 !important;
+	box-shadow: 0 0 5px 5px #5f7161 !important;
+	color: black !important;
+}

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "../ASSETS/STYLES/GeneralStyle.css";
-import Header from "../COMPANENTS/Header";
 import Loading from "../COMPANENTS/Loading";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -35,7 +34,6 @@ const Home = (props) => {
 
 	return (
 		<div>
-			<Header />
 			<div className="PageName">
 				<h1> HOME </h1>
 			</div>

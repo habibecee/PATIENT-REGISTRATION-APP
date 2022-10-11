@@ -1,7 +1,6 @@
 import "../ASSETS/STYLES/GeneralStyle.css";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Header from "../COMPANENTS/Header";
 import Loading from "../COMPANENTS/Loading";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -9,7 +8,9 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-
+import DeleteTwoToneIcon from "@mui/icons-material/DeleteTwoTone";
+import CreateTwoToneIcon from "@mui/icons-material/CreateTwoTone";
+import InfoIcon from "@mui/icons-material/Info";
 import axios from "axios";
 import { Button } from "@mui/material";
 
@@ -36,7 +37,6 @@ const Patients = (props) => {
 
 	return (
 		<div>
-			<Header />
 			<div className="PageName">
 				<h1> PATIENTS LIST </h1>
 			</div>
@@ -77,7 +77,17 @@ const Patients = (props) => {
 									<TableCell align="center">{patient.name}</TableCell>
 									<TableCell align="center">{patient.surname}</TableCell>
 									<TableCell align="center">{patient.phoneNumber}</TableCell>
-									<TableCell align="center">BUTTONS</TableCell>
+									<TableCell align="center">
+										<Button>
+											<DeleteTwoToneIcon style={{ color: "red" }} />
+										</Button>
+										<Button>
+											<CreateTwoToneIcon style={{ color: "blue" }} />
+										</Button>
+										<Button>
+											<InfoIcon style={{ color: "green" }} />
+										</Button>
+									</TableCell>
 								</TableRow>
 							);
 						})}
