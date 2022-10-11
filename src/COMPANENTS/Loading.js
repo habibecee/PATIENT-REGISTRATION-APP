@@ -16,7 +16,7 @@ const Loading = (props) => {
 					flexDirection: "column",
 					alignItems: "center",
 					justifyContent: "center",
-					marginLeft: "40%",
+					marginLeft: "35%",
 				}}
 			/>
 		</div>

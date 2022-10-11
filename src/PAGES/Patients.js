@@ -22,6 +22,8 @@ const Patients = (props) => {
 	//  bir dizi için kullanılacaksa ya boş dizi [] ya da null verilmelidir.
 	// Yani veri çekilecek işleme göre ayarlanmalı.
 
+	const [updateCompanent, setUpdateCompanent] = useState(false);
+
 	useEffect(() => {
 		axios
 			.get("http://localhost:3004/patient")
@@ -29,7 +31,24 @@ const Patients = (props) => {
 				setPatients(res.data);
 			})
 			.catch((err) => console.log("patientErr", err));
-	}, []);
+	}, [updateCompanent]);
+
+	const handleDeletePatient = (patient) => {
+		console.log(patient);
+		axios
+			.delete(`http://localhost:3004/patient/${patient.id}`)
+			.then((deleteRes) => {
+				patient.processIds.map((processId) => {
+					axios
+						.delete(`http://localhost:3004/process/${processId}`)
+						.then((processRes) => {})
+						.catch((processErr) => console.log(processErr));
+				});
+
+				setUpdateCompanent(!updateCompanent);
+			})
+			.catch((deleteErr) => console.log(deleteErr));
+	};
 
 	if (patients === null) {
 		return <Loading />;
@@ -68,6 +87,17 @@ const Patients = (props) => {
 						</TableRow>
 					</TableHead>
 					<TableBody sx={{ backgroundColor: " #F0D9FF" }}>
+						{patients.length === 0 && (
+							<TableRow
+								sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+							>
+								<TableCell colSpan={4} align="center">
+									{" "}
+									THERE IS NO REGISTERED PATIENT{" "}
+								</TableCell>
+							</TableRow>
+						)}
+
 						{patients.map((patient) => {
 							return (
 								<TableRow
@@ -79,7 +109,10 @@ const Patients = (props) => {
 									<TableCell align="center">{patient.phoneNumber}</TableCell>
 									<TableCell align="center">
 										<Button>
-											<DeleteTwoToneIcon style={{ color: "red" }} />
+											<DeleteTwoToneIcon
+												style={{ color: "red" }}
+												onClick={() => handleDeletePatient(patient)}
+											/>
 										</Button>
 										<Button>
 											<CreateTwoToneIcon style={{ color: "blue" }} />

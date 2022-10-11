@@ -3,75 +3,9 @@
     {
       "id": "1",
       "date": "17.09.2022",
-      "patientId": "1"
+      "patientId": "1665513422769"
     }
   ],
-  "patient": [
-    {
-      "id": "1",
-      "name": "Patient 1",
-      "surname": "Patient 1",
-      "phoneNumber": "05555555555",
-      "notes": "",
-      "processIds": [
-        "1"
-        
-      ]
-    },
-    {
-      "id": "2",
-      "name": "Patient 2",
-      "surname": "Patient 2",
-      "phoneNumber": "05555555522",
-      "notes": "",
-      "processIds": [
-        "2"
-      ]
-    },
-    {
-      "id": "1665501246771",
-      "name": "KLSDJFLSK",
-      "surname": "DSKFJSLKD",
-      "phoneNumber": "04534565678",
-      "notes": "DKFJSLKDF",
-      "processIds": []
-    },
-    {
-      "id": "1665507646124",
-      "name": "Deneme2",
-      "surname": "Deneme 2",
-      "phoneNumber": "05465672345",
-      "notes": "Hasta hakkındaki önemli notlar",
-      "processIds": [
-        "1665507645999"
-      ]
-    }
-  ],
-  "process": [
-    {
-      "id": "1",
-      "complaint": "grip",
-      "treatment": "vitamin takviye",
-      "medicine": [
-        "Dvit",
-        "CVit"
-      ]
-    },
-    {
-      "id": "2",
-      "complaint": "influenza",
-      "treatment": "ayakta",
-      "medicine": [
-        "Dvit",
-        "CVit",
-        "augmentin"
-      ]
-    },
-    {
-      "id": "1665507645999",
-      "complaint": "Soğuk Algınlığı",
-      "treatment": "",
-      "medicine": []
-    }
-  ]
+  "patient": [],
+  "process": []
 }

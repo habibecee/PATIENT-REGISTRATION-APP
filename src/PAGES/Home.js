@@ -52,7 +52,9 @@ const Home = (props) => {
 						{appointments.map((appointment) => {
 							//(appointment,index ) şeklinde yazılabileceği gibi aşağıda TableRow içinde key olarak da tanımlanabilir.
 							const searchPatient = patients.find(
-								(patient) => patient.id === appointment.patientId
+								(patient) =>
+									patient.id === appointment.patientId ||
+									patient.id !== undefined
 							);
 							return (
 								<TableRow
