@@ -1,11 +1,9 @@
 import React from "react";
-import Header from "./Header";
 import LoadingGif from "../ASSETS/IMAGES/Loading.gif";
 
 const Loading = (props) => {
 	return (
 		<div>
-			<Header />
 			<img
 				alt=""
 				src={LoadingGif}

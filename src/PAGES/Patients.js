@@ -22,6 +22,8 @@ const Patients = (props) => {
 	//  bir dizi için kullanılacaksa ya boş dizi [] ya da null verilmelidir.
 	// Yani veri çekilecek işleme göre ayarlanmalı.
 
+	const [appointments, setAppointments] = useState(null);
+
 	const [updateCompanent, setUpdateCompanent] = useState(false);
 
 	useEffect(() => {
@@ -31,18 +33,37 @@ const Patients = (props) => {
 				setPatients(res.data);
 			})
 			.catch((err) => console.log("patientErr", err));
+
+		axios
+			.get("http://localhost:3004/appointment")
+			.then((res) => {
+				setAppointments(res.data);
+			})
+			.catch((err) => console.log(err));
 	}, [updateCompanent]);
 
 	const handleDeletePatient = (patient) => {
 		console.log(patient);
+
+		const filteredAppointment = appointments.filter(
+			(item) => item.patientId === patient.id
+		);
+		console.log("filteredAppointment", filteredAppointment);
+
 		axios
 			.delete(`http://localhost:3004/patient/${patient.id}`)
 			.then((deleteRes) => {
-				patient.processIds.map((processId) => {
+				patient.processIds.forEach((processId) => {
 					axios
 						.delete(`http://localhost:3004/process/${processId}`)
 						.then((processRes) => {})
 						.catch((processErr) => console.log(processErr));
+				});
+				filteredAppointment.forEach((item) => {
+					axios
+						.delete(`http://localhost:3004/appointment/${item.id}`)
+						.then((res) => {})
+						.catch((err) => console.log(err));
 				});
 
 				setUpdateCompanent(!updateCompanent);
@@ -50,12 +71,12 @@ const Patients = (props) => {
 			.catch((deleteErr) => console.log(deleteErr));
 	};
 
-	if (patients === null) {
+	if (patients === null || appointments === null) {
 		return <Loading />;
 	}
 
 	return (
-		<div>
+		<>
 			<div className="PageName">
 				<h1> PATIENTS LIST </h1>
 			</div>
@@ -127,7 +148,7 @@ const Patients = (props) => {
 					</TableBody>
 				</Table>
 			</TableContainer>
-		</div>
+		</>
 	);
 };
 

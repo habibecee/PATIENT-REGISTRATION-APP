@@ -1,11 +1,23 @@
 {
-  "appointment": [
+  "appointment": [],
+  "patient": [
     {
-      "id": "1",
-      "date": "17.09.2022",
-      "patientId": "1665513422769"
+      "id": "1666107030632",
+      "name": "dsmnöfmd",
+      "surname": "dfmndöfmsn",
+      "phoneNumber": "05555555550",
+      "notes": "smönfsdömndfmösdnfsdöm",
+      "processIds": [
+        "1666107030459"
+      ]
     }
   ],
-  "patient": [],
-  "process": []
+  "process": [
+    {
+      "id": "1666107030459",
+      "complaint": "dnasmösadn",
+      "treatment": "",
+      "medicine": []
+    }
+  ]
 }

@@ -87,7 +87,7 @@ const AddPatient = (props) => {
 	}
 
 	return (
-		<div>
+		<>
 			<div className="PageName">
 				<h1> ADD NEW PATIENT </h1>
 			</div>
@@ -156,7 +156,7 @@ const AddPatient = (props) => {
 					</Button>
 				</div>
 			</Box>
-		</div>
+		</>
 	);
 };
 

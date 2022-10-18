@@ -108,9 +108,9 @@ const Header = (props) => {
 								<Link className="closeNavLinks" to="/patients">
 									PATIENTS
 								</Link>
-								<Link className="closeNavLinks" to="/appointments">
+								{/* <Link className="closeNavLinks" to="/appointments">
 									APPOINTMENTS
-								</Link>
+								</Link> */}
 							</MenuItem>
 						</Menu>
 					</Box>
@@ -146,9 +146,9 @@ const Header = (props) => {
 						<Link className="NavLinks" to="/patients">
 							PATIENTS
 						</Link>
-						<Link className="NavLinks" to="/appointments">
+						{/* <Link className="NavLinks" to="/appointments">
 							APPOINTMENTS
-						</Link>
+						</Link> */}
 					</Box>
 					<Button color="inherit" sx={{ fontSize: "1.5rem" }}>
 						Log In

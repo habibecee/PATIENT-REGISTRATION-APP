@@ -6,6 +6,7 @@ import Patients from "./PAGES/Patients";
 import AddPatient from "./PAGES/AddPatient";
 import Header from "./COMPANENTS/Header";
 import Footer from "./COMPANENTS/Footer";
+import AddAppointment from "./PAGES/AddAppointment";
 
 function App() {
 	return (
@@ -15,6 +16,7 @@ function App() {
 				<Route path="/" element={<Home />} />
 				<Route path="/patients" element={<Patients />} />
 				<Route path="/add-patient" element={<AddPatient />} />
+				<Route path="/add-appointment" element={<AddAppointment />} />
 			</Routes>
 			<Footer />
 		</BrowserRouter>
