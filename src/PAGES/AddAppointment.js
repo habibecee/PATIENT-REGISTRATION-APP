@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Loading from "../COMPANENTS/Loading";
 import Box from "@mui/material/Box";
 import { Button } from "@mui/material";
@@ -11,11 +12,12 @@ import "../../src/App.css";
 import axios from "axios";
 
 const AddAppointment = (props) => {
+	const navigate = useNavigate();
 	const [name, setName] = useState("");
 	const [surname, setSurname] = useState("");
 	const [phone, setPhone] = useState("");
 	const [complaint, setComplaint] = useState("");
-	const [date, setDate] = React.useState(dayjs(""));
+	const [date, setDate] = React.useState(dayjs());
 	const [patients, setPatients] = useState(null);
 	const [hasPatient, setHasPatient] = useState(false);
 
@@ -27,25 +29,6 @@ const AddAppointment = (props) => {
 			})
 			.catch((err) => console.log(err));
 	}, []);
-
-	const handlePhoneChange = (event) => {
-		setPhone(event.target.value);
-
-		const searchPatient = patients.find(
-			(item) => item.phoneNumber === String(event.target.value)
-		);
-		console.log("searchPatient", searchPatient);
-
-		if (searchPatient !== undefined) {
-			setName(searchPatient.name);
-			setSurname(searchPatient.surname);
-			setHasPatient(true);
-		} else {
-			setName("");
-			setSurname("");
-			setHasPatient(searchPatient);
-		}
-	};
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
@@ -70,10 +53,109 @@ const AddAppointment = (props) => {
 		if (hasPatient) {
 			const newAppointment = {
 				id: String(new Date().getTime()),
-				date: date,
+				date: String(date),
 				patientId: hasPatient.id,
 			};
+
+			const newProcess = {
+				id: String(new Date().getTime() + 1),
+				complaint: complaint,
+				treatment: "",
+				medicine: [],
+			};
+
+			const updatedPatient = {
+				...hasPatient,
+				processIds: [...hasPatient.processIds, newProcess.id],
+			};
+
+			axios
+				.post("http://localhost:3004/appointment", newAppointment)
+				.then((res) => {
+					console.log("randevu kayıt", res);
+				})
+				.catch((err) => console.log(err));
+
 			console.log("newAppointment", newAppointment);
+			axios
+				.post("http://localhost:3004/process", newProcess)
+				.then((response) => {
+					console.log("işlem kayıt", response);
+				})
+				.catch((error) => console.log(error));
+
+			axios
+				.put(`http://localhost:3004/patient/${hasPatient.id}`, updatedPatient)
+				.then((ress) => {
+					console.log("hasta update", ress);
+				})
+				.catch((errr) => console.log("errrr", errr));
+
+			navigate("/");
+		} else {
+			const newProcess = {
+				id: String(new Date().getTime()),
+				complaint: complaint,
+				treatment: "",
+				medicine: [],
+			};
+
+			const newPatient = {
+				id: String(new Date().getTime() + 1),
+				name: name,
+				surname: surname,
+				phoneNumber: phone,
+				processIds: [newProcess.id],
+			};
+
+			const newAppointment = {
+				id: String(new Date().getTime() + 2),
+				date: String(date),
+				patientId: newPatient.id,
+			};
+
+			axios
+				.post("http://localhost:3004/appointment", newAppointment)
+				.then((res) => {
+					console.log("randevu kayıt", res);
+				})
+				.catch((err) => console.log(err));
+
+			console.log("newAppointment", newAppointment);
+			axios
+				.post("http://localhost:3004/process", newProcess)
+				.then((response) => {
+					console.log("işlem kayıt", response);
+				})
+				.catch((error) => console.log(error));
+
+			axios
+				.post("http://localhost:3004/patient", newPatient)
+				.then((res) => {
+					console.log(res);
+				})
+				.catch((err) => console.log(err));
+
+			navigate("/");
+		}
+	};
+
+	const handlePhoneChange = (event) => {
+		setPhone(event.target.value);
+
+		const searchPatient = patients.find(
+			(item) => item.phoneNumber === String(event.target.value)
+		);
+		console.log("searchPatient", searchPatient);
+
+		if (searchPatient !== undefined) {
+			setName(searchPatient.name);
+			setSurname(searchPatient.surname);
+			setHasPatient(searchPatient);
+		} else {
+			setName("");
+			setSurname("");
+			setHasPatient(false);
 		}
 	};
 
@@ -100,7 +182,7 @@ const AddAppointment = (props) => {
 				<LocalizationProvider dateAdapter={AdapterDayjs}>
 					<DateTimePicker
 						renderInput={(props) => <TextField {...props} />}
-						label="Pick The Appointment Date"
+						label="Pick The Appointment"
 						value={date}
 						defaultValue={new Date("dd/mm/yyyy hh/mm")}
 						onChange={(event) => {
