@@ -33,9 +33,9 @@ const Patients = (props) => {
 		setOpenEditModal(false);
 	};
 
-	const cancelEdit = {
-		...patients,
-	};
+	// const cancelEdit = {
+	// 	...patients,
+	// };
 
 	useEffect(() => {
 		axios
@@ -51,7 +51,7 @@ const Patients = (props) => {
 				setAppointments(res.data);
 			})
 			.catch((err) => console.log(err));
-	}, [updateCompanent, cancelEdit]);
+	}, [updateCompanent]);
 
 	const handleDeletePatient = (patient) => {
 		console.log(patient);

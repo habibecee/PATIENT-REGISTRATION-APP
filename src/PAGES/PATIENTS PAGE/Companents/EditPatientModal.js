@@ -119,7 +119,13 @@ const EditPatientModal = (props) => {
 		<>
 			<Modal
 				open={open}
-				onClose={handleClose}
+				onClose={() => {
+					handleClose();
+					setName(Patient.name);
+					setSurname(Patient.surname);
+					setPhone(Patient.phoneNumber);
+					setNote(Patient.notes);
+				}}
 				aria-labelledby="modal-modal-title"
 				aria-describedby="modal-modal-description"
 			>
@@ -133,7 +139,15 @@ const EditPatientModal = (props) => {
 							marginRight: "-20px",
 						}}
 					>
-						<Button onClick={handleClose}>
+						<Button
+							onClick={() => {
+								handleClose();
+								setName(Patient.name);
+								setSurname(Patient.surname);
+								setPhone(Patient.phoneNumber);
+								setNote(Patient.notes);
+							}}
+						>
 							<CancelIcon style={{ color: "red" }} fontSize="large" />
 						</Button>
 					</div>
