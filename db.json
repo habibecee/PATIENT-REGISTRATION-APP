@@ -2,7 +2,7 @@
   "appointment": [
     {
       "id": "1",
-      "date": "17.09.2022",
+      "date": "09/09/2022",
       "patientId": "1666107030632"
     },
     {
@@ -14,96 +14,36 @@
       "id": "1666175613306",
       "date": "Fri, 21 Oct 2022 12:00:00 GMT",
       "patientId": "1666175613305"
-    },
-    {
-      "id": "1666176058975",
-      "date": "Thu, 20 Oct 2022 15:00:29 GMT",
-      "patientId": "1666176058973"
-    },
-    {
-      "id": "1666176172849",
-      "date": "Thu, 20 Oct 2022 12:00:00 GMT",
-      "patientId": "1666176172848"
-    },
-    {
-      "id": "1666176325640",
-      "date": "Sat, 22 Oct 2022 09:00:00 GMT",
-      "patientId": "1666176325639"
-    },
-    {
-      "id": "1666177240977",
-      "date": "Sat, 22 Oct 2022 09:00:00 GMT",
-      "patientId": "1666177240976"
-    },
-    {
-      "id": "1666177568950",
-      "date": "Sat, 22 Oct 2022 15:00:25 GMT",
-      "patientId": "1666176058973"
     }
   ],
   "patient": [
     {
       "id": "1666107030632",
-      "name": "dsmnöfmd",
-      "surname": "dfmndöfmsn",
+      "name": "DENEME 0",
+      "surname": "DENEME 0",
       "phoneNumber": "05555555550",
-      "notes": "smönfsdömndfmösdnfsdöm",
+      "notes": "smönfsdömndfmösdnfsdöm\nDKJSAKLDJALKSFJ\nDKLFJDLKGDJALKSFJS\nSDFJKSDLJGFSLKDJALK",
       "processIds": []
     },
     {
       "id": "1666175530523",
-      "name": "1",
-      "surname": "1",
+      "name": "DENEME 1",
+      "surname": "DENEME 1",
       "phoneNumber": "05555555551",
       "processIds": [
         "1666175530522"
-      ]
+      ],
+      "notes": "SJLSKFJLKSDFJLASJFŞLAJDFLDJFŞLAS\nLKFJSLKDFJLSJFLSD\nDKFLJSLDKFJLKGJFLKG\nLKFSJDLKGFJLSFJD"
     },
     {
       "id": "1666175613305",
-      "name": "2",
-      "surname": "2",
+      "name": "DENEME 2",
+      "surname": "DENEME 2",
       "phoneNumber": "05555555552",
       "processIds": [
         "1666175613304"
-      ]
-    },
-    {
-      "id": "1666176058973",
-      "name": "3",
-      "surname": "3",
-      "phoneNumber": "05555555553",
-      "processIds": [
-        "1666176058972",
-        "1666177568952"
-      ]
-    },
-    {
-      "id": "1666176172848",
-      "name": "4",
-      "surname": "4",
-      "phoneNumber": "05555555554",
-      "processIds": [
-        "1666176172847"
-      ]
-    },
-    {
-      "id": "1666176325639",
-      "name": "5",
-      "surname": "5",
-      "phoneNumber": "05555555555",
-      "processIds": [
-        "1666176325638"
-      ]
-    },
-    {
-      "id": "1666177240976",
-      "name": "6",
-      "surname": "6",
-      "phoneNumber": "05555555556",
-      "processIds": [
-        "1666177240975"
-      ]
+      ],
+      "notes": "SJLSKFJLKSDFJLASJFŞLAJDFLDJFŞLAS\nDJHSKJFSDHFKJSHFAKLD\nDJKFHSDFKJHDGKSDF\nJKDFHKGSDLFKASJFLKDJFD"
     }
   ],
   "process": [
@@ -116,36 +56,6 @@
     {
       "id": "1666175613304",
       "complaint": "covid",
-      "treatment": "",
-      "medicine": []
-    },
-    {
-      "id": "1666176058972",
-      "complaint": "baş ağrısı",
-      "treatment": "",
-      "medicine": []
-    },
-    {
-      "id": "1666176172847",
-      "complaint": "ağrı",
-      "treatment": "",
-      "medicine": []
-    },
-    {
-      "id": "1666176325638",
-      "complaint": "bilmiyor",
-      "treatment": "",
-      "medicine": []
-    },
-    {
-      "id": "1666177240975",
-      "complaint": "DHJFSK",
-      "treatment": "",
-      "medicine": []
-    },
-    {
-      "id": "1666177568952",
-      "complaint": "grip",
       "treatment": "",
       "medicine": []
     }

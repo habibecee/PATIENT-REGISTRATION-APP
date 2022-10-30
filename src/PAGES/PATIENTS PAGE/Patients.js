@@ -1,7 +1,8 @@
-import "../ASSETS/STYLES/GeneralStyle.css";
+import "../../ASSETS/STYLES/GeneralStyle.css";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Loading from "../COMPANENTS/Loading";
+import Loading from "../../COMPANENTS/Loading";
+import EditPatientModal from "./Companents/EditPatientModal";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -25,6 +26,16 @@ const Patients = (props) => {
 	const [appointments, setAppointments] = useState(null);
 
 	const [updateCompanent, setUpdateCompanent] = useState(false);
+	const [openEditModal, setOpenEditModal] = useState(false);
+	const [selectedPatient, setSelectedPatient] = useState(null);
+
+	const handleClose = () => {
+		setOpenEditModal(false);
+	};
+
+	const cancelEdit = {
+		...patients,
+	};
 
 	useEffect(() => {
 		axios
@@ -40,7 +51,7 @@ const Patients = (props) => {
 				setAppointments(res.data);
 			})
 			.catch((err) => console.log(err));
-	}, [updateCompanent]);
+	}, [updateCompanent, cancelEdit]);
 
 	const handleDeletePatient = (patient) => {
 		console.log(patient);
@@ -129,13 +140,15 @@ const Patients = (props) => {
 									<TableCell align="center">{patient.surname}</TableCell>
 									<TableCell align="center">{patient.phoneNumber}</TableCell>
 									<TableCell align="center">
-										<Button>
-											<DeleteTwoToneIcon
-												style={{ color: "red" }}
-												onClick={() => handleDeletePatient(patient)}
-											/>
+										<Button onClick={() => handleDeletePatient(patient)}>
+											<DeleteTwoToneIcon style={{ color: "red" }} />
 										</Button>
-										<Button>
+										<Button
+											onClick={() => {
+												setOpenEditModal(true);
+												setSelectedPatient(patient);
+											}}
+										>
 											<CreateTwoToneIcon style={{ color: "blue" }} />
 										</Button>
 										<Button>
@@ -148,6 +161,14 @@ const Patients = (props) => {
 					</TableBody>
 				</Table>
 			</TableContainer>
+			<EditPatientModal
+				updateCompanent={updateCompanent}
+				setUpdateCompanent={setUpdateCompanent}
+				Patients={patients}
+				Patient={selectedPatient}
+				open={openEditModal}
+				handleClose={handleClose}
+			/>
 		</>
 	);
 };

@@ -18,3 +18,12 @@ body {
 	font-size: 3rem;
 	text-shadow: 0 0 5px #5a4184, 0 0 10px #faa804;
 }
+
+.editModal {
+	background-color: #b4b2b2 !important;
+}
+
+.editFormDiv {
+	background-color: rgba(233, 159, 255, 0.845) !important;
+	box-shadow: 0 0 10px 5px #6b578e !important;
+}
