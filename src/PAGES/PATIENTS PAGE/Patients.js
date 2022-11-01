@@ -149,10 +149,12 @@ const Patients = (props) => {
 												setSelectedPatient(patient);
 											}}
 										>
-											<CreateTwoToneIcon style={{ color: "blue" }} />
+											<CreateTwoToneIcon style={{ color: "gray" }} />
 										</Button>
-										<Button>
-											<InfoIcon style={{ color: "green" }} />
+										<Button
+											onClick={() => navigate(`/patient-details/${patient.id}`)}
+										>
+											<InfoIcon style={{ color: "blue" }} />
 										</Button>
 									</TableCell>
 								</TableRow>
