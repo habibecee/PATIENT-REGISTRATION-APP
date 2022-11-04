@@ -30,6 +30,6 @@
 
 ![](./src/ASSETS/PROJECT%20VIEWS/patient-app-screen-2.gif) </br>
 
-<h5> 3. PATIENTS PAGES PROPERTIES AND GENERAL VIEW ; </h5> </br>
+<h5> 3. ADD PATIENT PAGE'S PROPERTIES AND GENERAL VIEW ; </h5> </br>
 
 ![](./src/ASSETS/PROJECT%20VIEWS/patient-app-screen-3.gif) </br>
