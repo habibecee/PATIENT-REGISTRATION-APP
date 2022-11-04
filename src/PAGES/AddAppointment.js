@@ -20,12 +20,20 @@ const AddAppointment = (props) => {
 	const [date, setDate] = React.useState(dayjs());
 	const [patients, setPatients] = useState(null);
 	const [hasPatient, setHasPatient] = useState(false);
+	const [appointment, setAppointment] = useState(null);
 
 	useEffect(() => {
 		axios
 			.get("http://localhost:3004/patient")
 			.then((res) => {
 				setPatients(res.data);
+			})
+			.catch((err) => console.log(err));
+
+		axios
+			.get("http://localhost:3004/appointment")
+			.then((res) => {
+				setAppointment(res.data);
 			})
 			.catch((err) => console.log(err));
 	}, []);
@@ -47,6 +55,13 @@ const AddAppointment = (props) => {
 
 		if (phone.length !== 11) {
 			alert("PHONE NUMBER IS WRONG!");
+			return;
+		}
+
+		const isAvaliableDate = appointment.find((item) => item.date === date);
+
+		if (isAvaliableDate !== undefined) {
+			alert("This date and time is not available. Please select another one.");
 			return;
 		}
 
@@ -159,7 +174,7 @@ const AddAppointment = (props) => {
 		}
 	};
 
-	if (patients === null) {
+	if (patients === null || appointment === null) {
 		return <Loading />;
 	}
 
