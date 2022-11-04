@@ -11,9 +11,9 @@
       "patientId": "1666175613305"
     },
     {
-      "id": "1667565378534",
-      "date": "Wed, 23 Nov 2022 12:00:41 GMT",
-      "patientId": "1667565378533"
+      "id": "1667597734310",
+      "date": "Tue, 29 Nov 2022 21:00:14 GMT",
+      "patientId": "1667597658680"
     }
   ],
   "patient": [
@@ -38,12 +38,14 @@
       "notes": "SJLSKFJLKSDFJLASJFŞLAJDFLDJFŞLAS\nDJHSKJFSDHFKJSHFAKLD\nDJKFHSDFKJHDGKSDF\nJKDFHKGSDLFKASJFLKDJFD"
     },
     {
-      "id": "1667565378533",
-      "name": "DENEME",
-      "surname": "DENEME 0",
-      "phoneNumber": "05555555550",
+      "id": "1667597658680",
+      "name": "deneme 6",
+      "surname": "deneme 6",
+      "phoneNumber": "05555555556",
+      "notes": "dlkfjdlgfkjfdlgkjfdl",
       "processIds": [
-        "1667565378532"
+        "1667597658617",
+        "1667597734311"
       ]
     }
   ],
@@ -51,12 +53,11 @@
     {
       "id": "1666175530522",
       "complaint": "INFLUENZA",
-      "treatment": "",
+      "treatment": "serum verildi",
       "medicine": [
         "parol",
-        "iburamin",
-        "C-Vit",
-        "D-Vit"
+        " iburamin",
+        " c vit"
       ]
     },
     {
@@ -70,13 +71,18 @@
       ]
     },
     {
-      "id": "1667565378532",
-      "complaint": "BEL AĞRISI",
-      "treatment": "SERUM",
+      "id": "1667597658617",
+      "complaint": "öksürük",
+      "treatment": "öksürük ilacı verildi",
       "medicine": [
-        "Parol",
-        " Iburamin"
+        "novalgin"
       ]
+    },
+    {
+      "id": "1667597734311",
+      "complaint": "covid",
+      "treatment": "",
+      "medicine": []
     }
   ]
 }

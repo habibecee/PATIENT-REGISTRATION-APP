@@ -46,6 +46,7 @@ const Header = (props) => {
 							display: { xs: "none", md: "flex" },
 							mr: 5,
 							fontSize: "2.5rem",
+							color: "#3AB4F2",
 						}}
 					/>
 					<Typography
@@ -59,12 +60,12 @@ const Header = (props) => {
 
 							fontWeight: 700,
 							letterSpacing: "1rem",
-							color: "inherit",
+							color: "#2192FF",
 							textDecoration: "none",
 							fontSize: "2rem",
 						}}
 					>
-						YANKI
+						hEaLtHiSh
 					</Typography>
 
 					<Box
@@ -115,7 +116,11 @@ const Header = (props) => {
 						</Menu>
 					</Box>
 					<Diversity2TwoToneIcon
-						sx={{ display: { xs: "flex", md: "none" }, mr: 1 }}
+						sx={{
+							display: { xs: "flex", md: "none" },
+							mr: 1,
+							color: "#3AB4F2",
+						}}
 					/>
 
 					<Typography
@@ -129,11 +134,11 @@ const Header = (props) => {
 							flexGrow: 1,
 							fontWeight: 700,
 							letterSpacing: ".3rem",
-							color: "inherit",
+							color: "#2192FF",
 							textDecoration: "none",
 						}}
 					>
-						YANKI
+						hEaLtHiSh
 					</Typography>
 					<Box
 						className="NavbarLinkBox"

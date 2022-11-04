@@ -108,17 +108,38 @@ const PatientDetails = (props) => {
 					PATIENT'S COMPLAINT:
 				</ListSubheader>
 				{patient?.process?.length === 0 ? (
-					<ListItem>
+					<ListItem
+						sx={{
+							// display: "flex",
+							alignItems: "center",
+							justifyContent: "center",
+							gap: "20px",
+						}}
+					>
 						<ListItemText
 							style={{ color: "blue" }}
 							primary="There is no process to belong this patient."
 						/>
 					</ListItem>
 				) : (
-					<ListItem>
+					<ListItem
+						sx={{
+							// display: "flex",
+							alignItems: "center",
+							justifyContent: "center",
+							gap: "20px",
+						}}
+					>
 						{patientProcess?.map((process) => (
 							<ul>
-								<ListItem>
+								<ListItem
+									sx={{
+										// display: "flex",
+										alignItems: "center",
+										justifyContent: "center",
+										gap: "20px",
+									}}
+								>
 									<ListItemText
 										style={{
 											color: "red",
@@ -138,7 +159,14 @@ const PatientDetails = (props) => {
 								</ListSubheader>
 								{process?.treatment === "" ? (
 									<ul>
-										<ListItem>
+										<ListItem
+											sx={{
+												// display: "flex",
+												alignItems: "center",
+												justifyContent: "center",
+												gap: "20px",
+											}}
+										>
 											<ListItemText primary="There is no treatment entered " />
 											<Button
 												style={{ marginLeft: "100px" }}
@@ -153,7 +181,14 @@ const PatientDetails = (props) => {
 									</ul>
 								) : (
 									<ul>
-										<ListItem>
+										<ListItem
+											sx={{
+												// display: "flex",
+												alignItems: "center",
+												justifyContent: "center",
+												gap: "20px",
+											}}
+										>
 											<ListItemText primary={process?.treatment} />
 										</ListItem>
 									</ul>
@@ -170,14 +205,28 @@ const PatientDetails = (props) => {
 
 								{process?.medicine?.length === 0 ? (
 									<ul>
-										<ListItem>
+										<ListItem
+											sx={{
+												// display: "flex",
+												alignItems: "center",
+												justifyContent: "center",
+												gap: "20px",
+											}}
+										>
 											<ListItemText primary="There is no medicine entered." />
 										</ListItem>
 									</ul>
 								) : (
 									<ul>
 										{process?.medicine?.map((medicine) => (
-											<ListItem>
+											<ListItem
+												sx={{
+													// display: "flex",
+													alignItems: "center",
+													justifyContent: "center",
+													gap: "20px",
+												}}
+											>
 												<ListItemText primary={medicine} />
 											</ListItem>
 										))}

@@ -65,7 +65,7 @@ const Home = (props) => {
 							<TableCell align="center"> NAME </TableCell>
 							<TableCell align="center"> SURNAME</TableCell>
 							<TableCell align="center">PHONE NUMBER </TableCell>
-							<TableCell align="center">PROCESS </TableCell>
+							<TableCell align="center">PROCESS & COMPLAINT </TableCell>
 						</TableRow>
 					</TableHead>
 					<TableBody sx={{ backgroundColor: " #F0D9FF" }}>
@@ -98,7 +98,7 @@ const Home = (props) => {
 									<TableCell align="center">
 										{searchPatient?.phoneNumber}
 									</TableCell>
-									<TableCell align="center">BUTTONS</TableCell>
+									<TableCell align="center">...</TableCell>
 								</TableRow>
 							);
 						})}
