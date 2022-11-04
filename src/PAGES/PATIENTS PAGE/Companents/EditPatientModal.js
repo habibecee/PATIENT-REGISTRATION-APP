@@ -11,7 +11,7 @@ const style = {
 	width: "40vw",
 	height: "30vw",
 	overflowY: "scroll",
-	// bgcolor: "background.paper",
+	bgcolor: "#FFD6EC",
 	border: ".5px solid #000",
 	boxShadow: 24,
 	p: 4,
@@ -129,7 +129,10 @@ const EditPatientModal = (props) => {
 				aria-labelledby="modal-modal-title"
 				aria-describedby="modal-modal-description"
 			>
-				<Box sx={style} className="editModal">
+				<Box
+					sx={style}
+					//  className="editModal"
+				>
 					<div
 						style={{
 							display: "flex",

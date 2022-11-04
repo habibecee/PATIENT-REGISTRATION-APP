@@ -19,11 +19,12 @@ body {
 	text-shadow: 0 0 5px #5a4184, 0 0 10px #faa804;
 }
 
-.editModal {
+/* .editModal {
 	background-color: #b4b2b2 !important;
-}
+} */
 
 .editFormDiv {
-	background-color: rgba(233, 159, 255, 0.845) !important;
-	box-shadow: 0 0 10px 5px #6b578e !important;
+	background-color: rgba(233, 159, 255, 0.666) !important;
+	box-shadow: 0 0 10px 10px #6b578ebe !important;
+	/* border: none !important; */
 }

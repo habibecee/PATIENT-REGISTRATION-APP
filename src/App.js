@@ -7,7 +7,7 @@ import AddPatient from "./PAGES/AddPatient";
 import Header from "./COMPANENTS/Header";
 import Footer from "./COMPANENTS/Footer";
 import AddAppointment from "./PAGES/AddAppointment";
-import PatientDetails from "./PAGES/PatientDetails";
+import PatientDetails from "./PAGES/PATIENT DETAILS PAGE/PatientDetails";
 
 function App() {
 	return (
