@@ -10,6 +10,8 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
 import "../../src/App.css";
 import axios from "axios";
+import api from "../API/api";
+import urls from "../URLS/urls";
 
 const AddAppointment = (props) => {
 	const navigate = useNavigate();
@@ -23,15 +25,15 @@ const AddAppointment = (props) => {
 	const [appointment, setAppointment] = useState(null);
 
 	useEffect(() => {
-		axios
-			.get("http://localhost:3004/patient")
+		api
+			.get(urls.patient)
 			.then((res) => {
 				setPatients(res.data);
 			})
 			.catch((err) => console.log(err));
 
-		axios
-			.get("http://localhost:3004/appointment")
+		api
+			.get(urls.appointment)
 			.then((res) => {
 				setAppointment(res.data);
 			})
@@ -84,23 +86,23 @@ const AddAppointment = (props) => {
 				processIds: [...hasPatient.processIds, newProcess.id],
 			};
 
-			axios
-				.post("http://localhost:3004/appointment", newAppointment)
+			api
+				.post(urls.appointment, newAppointment)
 				.then((res) => {
 					console.log("randevu kayıt", res);
 				})
 				.catch((err) => console.log(err));
 
 			console.log("newAppointment", newAppointment);
-			axios
-				.post("http://localhost:3004/process", newProcess)
+			api
+				.post(urls.process, newProcess)
 				.then((response) => {
 					console.log("işlem kayıt", response);
 				})
 				.catch((error) => console.log(error));
 
-			axios
-				.put(`http://localhost:3004/patient/${hasPatient.id}`, updatedPatient)
+			api
+				.put(`${urls.patient}/${hasPatient.id}`, updatedPatient)
 				.then((ress) => {
 					console.log("hasta update", ress);
 				})
@@ -129,23 +131,23 @@ const AddAppointment = (props) => {
 				patientId: newPatient.id,
 			};
 
-			axios
-				.post("http://localhost:3004/appointment", newAppointment)
+			api
+				.post(urls.appointment, newAppointment)
 				.then((res) => {
 					console.log("randevu kayıt", res);
 				})
 				.catch((err) => console.log(err));
 
 			console.log("newAppointment", newAppointment);
-			axios
-				.post("http://localhost:3004/process", newProcess)
+			api
+				.post(urls.process, newProcess)
 				.then((response) => {
 					console.log("işlem kayıt", response);
 				})
 				.catch((error) => console.log(error));
 
-			axios
-				.post("http://localhost:3004/patient", newPatient)
+			api
+				.post(urls.patient, newPatient)
 				.then((res) => {
 					console.log(res);
 				})
