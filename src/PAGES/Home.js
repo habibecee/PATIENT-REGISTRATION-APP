@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React /* , { useEffect, useState }*/ from "react";
 import { useNavigate } from "react-router-dom";
 import "../ASSETS/STYLES/GeneralStyle.css";
 import Loading from "../COMPANENTS/Loading";
@@ -10,28 +10,40 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import { Button } from "@mui/material";
 import axios from "axios";
+import { useSelector } from "react-redux";
 
 const Home = (props) => {
+	const { patientState, appointmentState } = useSelector((state) => state);
 	const navigate = useNavigate();
-	const [appointments, setAppointments] = useState(null);
-	const [patients, setPatients] = useState(null);
 
-	useEffect(() => {
-		axios
-			.get(" http://localhost:3004/appointment")
-			.then((resAppointments) => {
-				setAppointments(resAppointments.data);
-				axios
-					.get("http://localhost:3004/patient")
-					.then((resPatients) => {
-						setPatients(resPatients.data);
-					})
-					.catch((patientErr) => console.log("patientErr", patientErr));
-			})
-			.catch((appointmentERR) => console.log("appointmentERR", appointmentERR));
-	}, []);
+	/* BEFORE REDUX START */
 
-	if (appointments === null || patients === null) {
+	// const [appointments, setAppointments] = useState(null);
+	// const [patients, setPatients] = useState(null);
+
+	// useEffect(() => {
+	// 	axios
+	// 		.get(" http://localhost:3004/appointment")
+	// 		.then((resAppointments) => {
+	// 			setAppointments(resAppointments.data);
+	// 			axios
+	// 				.get("http://localhost:3004/patient")
+	// 				.then((resPatients) => {
+	// 					setPatients(resPatients.data);
+	// 				})
+	// 				.catch((patientErr) => console.log("patientErr", patientErr));
+	// 		})
+	// 		.catch((appointmentERR) => console.log("appointmentERR", appointmentERR));
+	// }, []);
+
+	/* BEFORE REDUX FINISH */
+
+	if (
+		appointmentState.start === true ||
+		appointmentState.fail === true ||
+		patientState.start === true ||
+		patientState.fail === true
+	) {
 		return <Loading />;
 	}
 
@@ -69,7 +81,7 @@ const Home = (props) => {
 						</TableRow>
 					</TableHead>
 					<TableBody sx={{ backgroundColor: " #F0D9FF" }}>
-						{appointments.length === 0 && (
+						{appointmentState.length === 0 && (
 							<TableRow
 								sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
 							>
@@ -80,9 +92,9 @@ const Home = (props) => {
 							</TableRow>
 						)}
 
-						{appointments.map((appointment) => {
+						{appointmentState.appointment?.map((appointment) => {
 							//(appointment,index ) şeklinde yazılabileceği gibi aşağıda TableRow içinde key olarak da tanımlanabilir.
-							const searchPatient = patients.find(
+							const searchPatient = patientState.patient?.find(
 								(patient) => patient.id === appointment.patientId
 							);
 							return (

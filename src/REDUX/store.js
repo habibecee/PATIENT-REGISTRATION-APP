@@ -12,9 +12,9 @@ import appointmentReducer from "./REDUCERS/appointmentReducer";
 import processReducer from "./REDUCERS/processReducer";
 
 const rootReducer = combineReducers({
-	patientReducer: patientReducer,
-	appointmentReducer: appointmentReducer,
-	processReducer: processReducer,
+	patientState: patientReducer,
+	appointmentState: appointmentReducer,
+	processState: processReducer,
 });
 
 const store = createStore(rootReducer);

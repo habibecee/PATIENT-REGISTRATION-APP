@@ -12,6 +12,7 @@ import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import Diversity2TwoToneIcon from "@mui/icons-material/Diversity2TwoTone";
+import { useSelector } from "react-redux";
 // import Avatar from "@mui/material/Avatar";
 // import Tooltip from "@mui/material/Tooltip";
 // import AdbIcon from "@mui/icons-material/Adb";
@@ -19,6 +20,8 @@ import Diversity2TwoToneIcon from "@mui/icons-material/Diversity2TwoTone";
 // const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 const Header = (props) => {
+	const { patientState } = useSelector((state) => state);
+
 	const [anchorElNav, setAnchorElNav] = React.useState(null);
 	// const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -108,7 +111,12 @@ const Header = (props) => {
 								</Link>
 								<Link className="closeNavLinks" to="/patients">
 									PATIENTS
+									<span className="closeNavLinks">
+										{" "}
+										{patientState.patient.length}{" "}
+									</span>
 								</Link>
+
 								{/* <Link className="closeNavLinks" to="/appointments">
 									APPOINTMENTS
 								</Link> */}
@@ -150,7 +158,18 @@ const Header = (props) => {
 						</Link>
 						<Link className="NavLinks" to="/patients">
 							PATIENTS
+							<span
+								style={{
+									color: "orange",
+									fontSize: ".8rem",
+									// marginLeft: "-5px",
+								}}
+							>
+								{" "}
+								({patientState.patient.length})
+							</span>
 						</Link>
+
 						{/* <Link className="NavLinks" to="/appointments">
 							APPOINTMENTS
 						</Link> */}
