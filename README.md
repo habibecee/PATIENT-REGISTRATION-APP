@@ -2,7 +2,7 @@
 
 <p> Patient registration app especially for doctors and also hospitals </p> </br>
 
-<p> This project will be updated </p> </br>
+<p> This project will be integrated to redux </p> </br>
 
 <p> Packages and Libraries that used; </br>
 
