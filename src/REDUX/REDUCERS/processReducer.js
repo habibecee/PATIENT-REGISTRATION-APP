@@ -43,6 +43,12 @@ const processReducer = (state = initialState, action) => {
 				error: action.payload,
 			};
 
+		case actionTypes.ADD_PROCESS:
+			return {
+				...state,
+				process: [action.payload, ...state.process],
+			};
+
 		default:
 			return state;
 	}

@@ -43,6 +43,12 @@ const appointmentReducer = (state = initialState, action) => {
 				error: action.payload,
 			};
 
+		case actionTypes.ADD_APPOINTMENT:
+			return {
+				...state,
+				appointment: [action.payload, ...state.appointment],
+			};
+
 		default:
 			return state;
 	}

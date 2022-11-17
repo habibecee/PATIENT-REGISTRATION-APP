@@ -12,33 +12,37 @@ import "../../src/App.css";
 import axios from "axios";
 import api from "../API/api";
 import urls from "../URLS/urls";
+import actionTypes from "../REDUX/ACTIONS/actionTypes";
+import { useDispatch, useSelector } from "react-redux";
 
 const AddAppointment = (props) => {
+	const { patientState, appointmentState } = useSelector((state) => state);
+	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const [name, setName] = useState("");
 	const [surname, setSurname] = useState("");
 	const [phone, setPhone] = useState("");
 	const [complaint, setComplaint] = useState("");
 	const [date, setDate] = React.useState(dayjs());
-	const [patients, setPatients] = useState(null);
 	const [hasPatient, setHasPatient] = useState(false);
-	const [appointment, setAppointment] = useState(null);
+	// const [patients, setPatients] = useState(null);
+	// const [appointment, setAppointment] = useState(null);
 
-	useEffect(() => {
-		api
-			.get(urls.patient)
-			.then((res) => {
-				setPatients(res.data);
-			})
-			.catch((err) => console.log(err));
+	// useEffect(() => {
+	// 	api
+	// 		.get(urls.patient)
+	// 		.then((res) => {
+	// 			setPatients(res.data);
+	// 		})
+	// 		.catch((err) => console.log(err));
 
-		api
-			.get(urls.appointment)
-			.then((res) => {
-				setAppointment(res.data);
-			})
-			.catch((err) => console.log(err));
-	}, []);
+	// 	api
+	// 		.get(urls.appointment)
+	// 		.then((res) => {
+	// 			setAppointment(res.data);
+	// 		})
+	// 		.catch((err) => console.log(err));
+	// }, []);
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
@@ -60,7 +64,9 @@ const AddAppointment = (props) => {
 			return;
 		}
 
-		const isAvaliableDate = appointment.find((item) => item.date === date);
+		const isAvaliableDate = appointmentState.appointment.find(
+			(item) => item.date === date
+		);
 
 		if (isAvaliableDate !== undefined) {
 			alert("This date and time is not available. Please select another one.");
@@ -90,6 +96,10 @@ const AddAppointment = (props) => {
 				.post(urls.appointment, newAppointment)
 				.then((res) => {
 					console.log("randevu kayıt", res);
+					dispatch({
+						type: actionTypes.ADD_APPOINTMENT,
+						payload: newAppointment,
+					});
 				})
 				.catch((err) => console.log(err));
 
@@ -98,6 +108,7 @@ const AddAppointment = (props) => {
 				.post(urls.process, newProcess)
 				.then((response) => {
 					console.log("işlem kayıt", response);
+					dispatch({ type: actionTypes.ADD_PROCESS, payload: newProcess });
 				})
 				.catch((error) => console.log(error));
 
@@ -105,10 +116,13 @@ const AddAppointment = (props) => {
 				.put(`${urls.patient}/${hasPatient.id}`, updatedPatient)
 				.then((ress) => {
 					console.log("hasta update", ress);
+					dispatch({ type: actionTypes.EDIT_PATIENT, payload: updatedPatient });
 				})
 				.catch((errr) => console.log("errrr", errr));
 
-			navigate("/");
+			setTimeout(() => {
+				navigate("/");
+			}, 1000);
 		} else {
 			const newProcess = {
 				id: String(new Date().getTime()),
@@ -135,6 +149,10 @@ const AddAppointment = (props) => {
 				.post(urls.appointment, newAppointment)
 				.then((res) => {
 					console.log("randevu kayıt", res);
+					dispatch({
+						type: actionTypes.ADD_APPOINTMENT,
+						payload: newAppointment,
+					});
 				})
 				.catch((err) => console.log(err));
 
@@ -143,6 +161,7 @@ const AddAppointment = (props) => {
 				.post(urls.process, newProcess)
 				.then((response) => {
 					console.log("işlem kayıt", response);
+					dispatch({ type: actionTypes.ADD_PROCESS, payload: newProcess });
 				})
 				.catch((error) => console.log(error));
 
@@ -150,17 +169,20 @@ const AddAppointment = (props) => {
 				.post(urls.patient, newPatient)
 				.then((res) => {
 					console.log(res);
+					dispatch({ type: actionTypes.ADD_PATIENT, payload: newPatient });
 				})
 				.catch((err) => console.log(err));
 
-			navigate("/");
+			setTimeout(() => {
+				navigate("/");
+			}, 1000);
 		}
 	};
 
 	const handlePhoneChange = (event) => {
 		setPhone(event.target.value);
 
-		const searchPatient = patients.find(
+		const searchPatient = patientState.patient.find(
 			(item) => item.phoneNumber === String(event.target.value)
 		);
 		console.log("searchPatient", searchPatient);
@@ -176,7 +198,7 @@ const AddAppointment = (props) => {
 		}
 	};
 
-	if (patients === null || appointment === null) {
+	if (patientState.success === false || appointmentState.success === false) {
 		return <Loading />;
 	}
 

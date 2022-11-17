@@ -43,6 +43,22 @@ const patientReducer = (state = initialState, action) => {
 				error: action.payload,
 			};
 
+		case actionTypes.ADD_PATIENT:
+			return {
+				...state,
+				patient: [action.payload, ...state.patient],
+			};
+
+		case actionTypes.EDIT_PATIENT:
+			const filteredPatient = state.patient.filter(
+				(item) => item.id !== action.payload.id
+			);
+
+			return {
+				...state,
+				patient: [action.payload, ...filteredPatient],
+			};
+
 		default:
 			return state;
 	}
