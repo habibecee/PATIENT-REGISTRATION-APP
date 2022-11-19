@@ -49,6 +49,16 @@ const appointmentReducer = (state = initialState, action) => {
 				appointment: [action.payload, ...state.appointment],
 			};
 
+		case actionTypes.DELETE_APPOINTMENT:
+			const filteredAppointment = state.appointment.filter(
+				(item) => item.id !== action.payload
+			);
+
+			return {
+				...state,
+				appointment: filteredAppointment,
+			};
+
 		default:
 			return state;
 	}

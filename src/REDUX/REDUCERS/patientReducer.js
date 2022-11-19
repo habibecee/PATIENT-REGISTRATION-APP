@@ -59,6 +59,16 @@ const patientReducer = (state = initialState, action) => {
 				patient: [action.payload, ...filteredPatient],
 			};
 
+		case actionTypes.DELETE_PATIENT:
+			const filteredDeletePatient = state.patient.filter(
+				(item) => item.id !== action.payload
+			);
+
+			return {
+				...state,
+				patient: filteredDeletePatient,
+			};
+
 		default:
 			return state;
 	}

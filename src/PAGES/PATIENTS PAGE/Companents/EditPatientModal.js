@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Box, Modal, Button, TextField, Alert } from "@mui/material";
 import CancelIcon from "@mui/icons-material/Cancel";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import actionTypes from "../../../REDUX/ACTIONS/actionTypes";
 
 const style = {
 	position: "absolute",
@@ -18,6 +20,8 @@ const style = {
 };
 
 const EditPatientModal = (props) => {
+	const dispatch = useDispatch();
+	const { patientState } = useSelector((state) => state);
 	const {
 		open,
 		handleClose,
@@ -82,12 +86,12 @@ const EditPatientModal = (props) => {
 			return;
 		}
 
-		const filteredPatients = Patients.filter(
+		const filteredPatients = patientState.patient?.filter(
 			(item) => item.phoneNumber !== Patient.phoneNumber
 		);
 
-		const hasNumber = filteredPatients.find(
-			(Patient) => Patient.phoneNumber === phone
+		const hasNumber = filteredPatients?.find(
+			(patient) => patient.phoneNumber === phone
 		);
 		console.log("hasNumber???", hasNumber);
 
@@ -109,6 +113,10 @@ const EditPatientModal = (props) => {
 		axios
 			.put(`http://localhost:3004/patient/${Patient.id}`, updatedPatient)
 			.then((res) => {
+				dispatch({
+					type: actionTypes.EDIT_PATIENT,
+					payload: updatedPatient,
+				});
 				handleClose();
 				setUpdateCompanent(!updateCompanent);
 			})

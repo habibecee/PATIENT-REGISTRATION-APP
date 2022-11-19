@@ -1,5 +1,5 @@
 import "../../ASSETS/STYLES/GeneralStyle.css";
-import React, { useEffect, useState } from "react";
+import React, { /*useEffect,*/ useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Loading from "../../COMPANENTS/Loading";
 import EditPatientModal from "./Companents/EditPatientModal";
@@ -14,16 +14,19 @@ import CreateTwoToneIcon from "@mui/icons-material/CreateTwoTone";
 import InfoIcon from "@mui/icons-material/Info";
 import axios from "axios";
 import { Button } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import actionTypes from "../../REDUX/ACTIONS/actionTypes";
 
 const Patients = (props) => {
+	const dispatch = useDispatch();
+	const { patientState, appointmentState } = useSelector((state) => state);
 	const navigate = useNavigate();
-	const [patients, setPatients] = useState(null);
+	// const [appointments, setAppointments] = useState(null);
+	// const [patients, setPatients] = useState(null);
 	// useState() içinde; eğer bir input için kullanılacaksa boş string ('')
 	//  -çünkü inputun değeri genelde stringdir- vermek daha mantıklı iken,
 	//  bir dizi için kullanılacaksa ya boş dizi [] ya da null verilmelidir.
 	// Yani veri çekilecek işleme göre ayarlanmalı.
-
-	const [appointments, setAppointments] = useState(null);
 
 	const [updateCompanent, setUpdateCompanent] = useState(false);
 	const [openEditModal, setOpenEditModal] = useState(false);
@@ -37,26 +40,26 @@ const Patients = (props) => {
 	// 	...patients,
 	// };
 
-	useEffect(() => {
-		axios
-			.get("http://localhost:3004/patient")
-			.then((res) => {
-				setPatients(res.data);
-			})
-			.catch((err) => console.log("patientErr", err));
+	// useEffect(() => {
+	// 	axios
+	// 		.get("http://localhost:3004/patient")
+	// 		.then((res) => {
+	// 			setPatients(res.data);
+	// 		})
+	// 		.catch((err) => console.log("patientErr", err));
 
-		axios
-			.get("http://localhost:3004/appointment")
-			.then((res) => {
-				setAppointments(res.data);
-			})
-			.catch((err) => console.log(err));
-	}, [updateCompanent]);
+	// 	axios
+	// 		.get("http://localhost:3004/appointment")
+	// 		.then((res) => {
+	// 			setAppointments(res.data);
+	// 		})
+	// 		.catch((err) => console.log(err));
+	// }, [updateCompanent]);
 
 	const handleDeletePatient = (patient) => {
 		console.log(patient);
 
-		const filteredAppointment = appointments.filter(
+		const filteredAppointment = appointmentState.appointment.filter(
 			(item) => item.patientId === patient.id
 		);
 		console.log("filteredAppointment", filteredAppointment);
@@ -64,16 +67,30 @@ const Patients = (props) => {
 		axios
 			.delete(`http://localhost:3004/patient/${patient.id}`)
 			.then((deleteRes) => {
+				dispatch({
+					type: actionTypes.DELETE_PATIENT,
+					payload: patient.id,
+				});
 				patient.processIds.forEach((processId) => {
 					axios
 						.delete(`http://localhost:3004/process/${processId}`)
-						.then((processRes) => {})
+						.then((processRes) => {
+							dispatch({
+								type: actionTypes.DELETE_PROCESS,
+								payload: processId,
+							});
+						})
 						.catch((processErr) => console.log(processErr));
 				});
 				filteredAppointment.forEach((item) => {
 					axios
 						.delete(`http://localhost:3004/appointment/${item.id}`)
-						.then((res) => {})
+						.then((res) => {
+							dispatch({
+								type: actionTypes.DELETE_APPOINTMENT,
+								payload: item.id,
+							});
+						})
 						.catch((err) => console.log(err));
 				});
 
@@ -82,7 +99,7 @@ const Patients = (props) => {
 			.catch((deleteErr) => console.log(deleteErr));
 	};
 
-	if (patients === null || appointments === null) {
+	if (patientState.success === false || appointmentState.success === false) {
 		return <Loading />;
 	}
 
@@ -119,7 +136,7 @@ const Patients = (props) => {
 						</TableRow>
 					</TableHead>
 					<TableBody sx={{ backgroundColor: " #F0D9FF" }}>
-						{patients.length === 0 && (
+						{patientState.patient.length === 0 && (
 							<TableRow
 								sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
 							>
@@ -130,15 +147,15 @@ const Patients = (props) => {
 							</TableRow>
 						)}
 
-						{patients.map((patient) => {
+						{patientState.patient.map((patient) => {
 							return (
 								<TableRow
-									key={patient.id}
+									key={patient?.id}
 									sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
 								>
-									<TableCell align="center">{patient.name}</TableCell>
-									<TableCell align="center">{patient.surname}</TableCell>
-									<TableCell align="center">{patient.phoneNumber}</TableCell>
+									<TableCell align="center">{patient?.name}</TableCell>
+									<TableCell align="center">{patient?.surname}</TableCell>
+									<TableCell align="center">{patient?.phoneNumber}</TableCell>
 									<TableCell align="center">
 										<Button onClick={() => handleDeletePatient(patient)}>
 											<DeleteTwoToneIcon style={{ color: "red" }} />
@@ -166,7 +183,7 @@ const Patients = (props) => {
 			<EditPatientModal
 				updateCompanent={updateCompanent}
 				setUpdateCompanent={setUpdateCompanent}
-				Patients={patients}
+				Patients={patientState.patient}
 				Patient={selectedPatient}
 				open={openEditModal}
 				handleClose={handleClose}

@@ -1,6 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { /* useEffect,*/ useState } from "react";
+// import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import api from "../API/api";
+import urls from "../URLS/urls";
+import actionTypes from "../REDUX/ACTIONS/actionTypes";
 import Loading from "../COMPANENTS/Loading";
+import "../../src/App.css";
 import Box from "@mui/material/Box";
 import { Button } from "@mui/material";
 import dayjs from "dayjs";
@@ -8,12 +14,6 @@ import TextField from "@mui/material/TextField";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
-import "../../src/App.css";
-import axios from "axios";
-import api from "../API/api";
-import urls from "../URLS/urls";
-import actionTypes from "../REDUX/ACTIONS/actionTypes";
-import { useDispatch, useSelector } from "react-redux";
 
 const AddAppointment = (props) => {
 	const { patientState, appointmentState } = useSelector((state) => state);
@@ -25,6 +25,7 @@ const AddAppointment = (props) => {
 	const [complaint, setComplaint] = useState("");
 	const [date, setDate] = React.useState(dayjs());
 	const [hasPatient, setHasPatient] = useState(false);
+
 	// const [patients, setPatients] = useState(null);
 	// const [appointment, setAppointment] = useState(null);
 

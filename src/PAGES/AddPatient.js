@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState /*, useEffect */ } from "react";
 import { useNavigate } from "react-router-dom";
 import Loading from "../COMPANENTS/Loading";
 import Box from "@mui/material/Box";
@@ -6,24 +6,29 @@ import TextField from "@mui/material/TextField";
 import { Button } from "@mui/material";
 import "../../src/App.css";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import actionTypes from "../REDUX/ACTIONS/actionTypes";
 
 const AddPatient = (props) => {
+	const { patientState } = useSelector((state) => state);
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
 	const [name, setName] = useState("");
 	const [surname, setSurname] = useState("");
 	const [phone, setPhone] = useState("");
 	const [note, setNote] = useState("");
 	const [complaint, setComplaint] = useState("");
-	const [patients, setPatients] = useState(null);
-	const navigate = useNavigate();
 
-	useEffect(() => {
-		axios
-			.get(" http://localhost:3004/patient")
-			.then((res) => {
-				setPatients(res.data);
-			})
-			.catch((err) => console.log(err));
-	}, []);
+	// const [patients, setPatients] = useState(null);
+
+	// useEffect(() => {
+	// 	axios
+	// 		.get(" http://localhost:3004/patient")
+	// 		.then((res) => {
+	// 			setPatients(res.data);
+	// 		})
+	// 		.catch((err) => console.log(err));
+	// }, []);
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
@@ -43,7 +48,9 @@ const AddPatient = (props) => {
 			return;
 		}
 
-		const hasNumber = patients.find((patient) => patient.phoneNumber === phone);
+		const hasNumber = patientState.patient.find(
+			(patient) => patient.phoneNumber === phone
+		);
 		console.log(hasNumber);
 
 		if (hasNumber !== undefined) {
@@ -61,6 +68,10 @@ const AddPatient = (props) => {
 		axios
 			.post(" http://localhost:3004/process", newProcess)
 			.then((ProcessRes) => {
+				dispatch({
+					type: actionTypes.ADD_PROCESS,
+					payload: newProcess,
+				});
 				const newPatient = {
 					id: String(new Date().getTime()),
 					name: name,
@@ -74,6 +85,10 @@ const AddPatient = (props) => {
 				axios
 					.post(" http://localhost:3004/patient", newPatient)
 					.then((res) => {
+						dispatch({
+							type: actionTypes.ADD_PATIENT,
+							payload: newPatient,
+						});
 						alert("NEW PATIENT IS SAVED SUCCESSFULLY");
 						navigate("/patients");
 					})
@@ -82,7 +97,7 @@ const AddPatient = (props) => {
 			.catch((ProcessErr) => console.log("ProcessErr", ProcessErr));
 	};
 
-	if (patients === null) {
+	if (patientState.success === false) {
 		return <Loading />;
 	}
 

@@ -9,7 +9,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import { Button } from "@mui/material";
-import axios from "axios";
+// import axios from "axios";
 import { useSelector } from "react-redux";
 
 const Home = (props) => {
@@ -81,13 +81,13 @@ const Home = (props) => {
 						</TableRow>
 					</TableHead>
 					<TableBody sx={{ backgroundColor: " #F0D9FF" }}>
-						{appointmentState.length === 0 && (
+						{appointmentState.appointment?.length === 0 && (
 							<TableRow
 								sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
 							>
 								<TableCell colSpan={5} align="center">
 									{" "}
-									THERE IS NO REGISTERED APPOİNTMENT HERE{" "}
+									THERE IS NO REGISTERED APPOINTMENT HERE{" "}
 								</TableCell>
 							</TableRow>
 						)}
@@ -122,9 +122,3 @@ const Home = (props) => {
 };
 
 export default Home;
-
-// {
-// 	"id": "1",
-// 	"date": "17.09.2022",
-// 	"patientId": "1666095545053"
-//   }

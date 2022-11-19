@@ -49,6 +49,15 @@ const processReducer = (state = initialState, action) => {
 				process: [action.payload, ...state.process],
 			};
 
+		case actionTypes.DELETE_PROCESS:
+			const filteredProcess = state.process.filter(
+				(item) => item.id !== action.payload
+			);
+			return {
+				...state,
+				process: filteredProcess,
+			};
+
 		default:
 			return state;
 	}
