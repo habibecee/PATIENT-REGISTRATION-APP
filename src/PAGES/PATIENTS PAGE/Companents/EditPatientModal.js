@@ -26,9 +26,9 @@ const EditPatientModal = (props) => {
 		open,
 		handleClose,
 		Patient,
-		Patients,
-		updateCompanent,
-		setUpdateCompanent,
+		// Patients,
+		// updateCompanent,
+		// setUpdateCompanent,
 	} = props;
 	const [name, setName] = useState(Patient?.name);
 	const [hasNameError, setHasNameError] = useState(false);
@@ -118,7 +118,8 @@ const EditPatientModal = (props) => {
 					payload: updatedPatient,
 				});
 				handleClose();
-				setUpdateCompanent(!updateCompanent);
+
+				// setUpdateCompanent(!updateCompanent);
 			})
 			.catch((err) => console.log("err update patient", err));
 	};

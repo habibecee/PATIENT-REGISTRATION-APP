@@ -11,9 +11,10 @@ import Box from "@mui/material/Box";
 import { Button } from "@mui/material";
 import dayjs from "dayjs";
 import TextField from "@mui/material/TextField";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
+
+// import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+// import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+// import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
 
 const AddAppointment = (props) => {
 	const { patientState, appointmentState } = useSelector((state) => state);
@@ -23,7 +24,7 @@ const AddAppointment = (props) => {
 	const [surname, setSurname] = useState("");
 	const [phone, setPhone] = useState("");
 	const [complaint, setComplaint] = useState("");
-	const [date, setDate] = React.useState(dayjs());
+	const [date, setDate] = useState(/*dayjs("mm.dd.yyyy hh:mm")*/ "");
 	const [hasPatient, setHasPatient] = useState(false);
 
 	// const [patients, setPatients] = useState(null);
@@ -65,7 +66,7 @@ const AddAppointment = (props) => {
 			return;
 		}
 
-		const isAvaliableDate = appointmentState.appointment.find(
+		const isAvaliableDate = appointmentState.appointment?.find(
 			(item) => item.date === date
 		);
 
@@ -219,18 +220,27 @@ const AddAppointment = (props) => {
 				autoComplete="off"
 				onSubmit={handleSubmit}
 			>
-				<LocalizationProvider dateAdapter={AdapterDayjs}>
+				<div className="formDiv">
+					<TextField
+						required
+						value={date}
+						defaultValue={new Date("dd/mm/yyyy hh:mm")}
+						onChange={(event) => setDate(event.target.value)}
+						type={"datetime-local"}
+					/>
+
+					{/* <LocalizationProvider dateAdapter={AdapterDayjs}>
 					<DateTimePicker
 						renderInput={(props) => <TextField {...props} />}
 						label="Pick The Appointment"
 						value={date}
-						defaultValue={new Date("dd/mm/yyyy hh/mm")}
+						defaultValue={new Date("mm.dd.yyyy hh:mm")}
 						onChange={(event) => {
 							setDate(event);
 						}}
 					/>
-				</LocalizationProvider>
-				<div className="formDiv">
+				</LocalizationProvider> */}
+
 					<TextField
 						required
 						type={"number"}

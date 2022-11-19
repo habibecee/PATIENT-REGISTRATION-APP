@@ -181,9 +181,9 @@ const Patients = (props) => {
 				</Table>
 			</TableContainer>
 			<EditPatientModal
-				updateCompanent={updateCompanent}
-				setUpdateCompanent={setUpdateCompanent}
-				Patients={patientState.patient}
+				// updateCompanent={updateCompanent}
+				// setUpdateCompanent={setUpdateCompanent}
+				// Patients={patientState.patient}
 				Patient={selectedPatient}
 				open={openEditModal}
 				handleClose={handleClose}

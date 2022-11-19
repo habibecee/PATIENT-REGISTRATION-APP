@@ -1,86 +1,48 @@
 {
   "appointment": [
     {
-      "id": "1668857124869",
-      "date": "Sat, 19 Nov 2022 11:25:01 GMT",
-      "patientId": "1668857124868"
+      "id": "1668875605175",
+      "date": "2022-11-20T20:35",
+      "patientId": "1668875605174"
     },
     {
-      "id": "1668857155306",
-      "date": "Sat, 26 Nov 2022 09:00:34 GMT",
-      "patientId": "1668857155305"
+      "id": "1668875651868",
+      "date": "2022-11-20T20:40",
+      "patientId": "1668875651867"
     }
   ],
   "patient": [
     {
-      "id": "1668857124868",
-      "name": "DENEME 0",
-      "surname": "DENEME 0",
+      "id": "1668875605174",
+      "name": "0",
+      "surname": "0",
       "phoneNumber": "05555555550",
       "processIds": [
-        "1668857124867"
+        "1668875605173"
       ],
-      "notes": "DSKLFJLSKDJFLKS\n"
+      "notes": "54321"
     },
     {
-      "id": "1668857155305",
-      "name": "DENEME 1",
-      "surname": "DENEME 1",
+      "id": "1668875651867",
+      "name": "1",
+      "surname": "1",
       "phoneNumber": "05555555551",
       "processIds": [
-        "1668857155304"
+        "1668875651866"
       ],
-      "notes": "FDLSJDLKFJSLKF\nFDLSJDLKFJSLKF\nFDLSJDLKFJSLKF"
-    },
-    {
-      "id": "1668857299315",
-      "name": "DENEME 2",
-      "surname": "DENEME 2",
-      "phoneNumber": "05555555552",
-      "notes": "KFDSJLKSJDFLKSJFLS",
-      "processIds": [
-        "1668857299280"
-      ]
-    },
-    {
-      "id": "1668857800366",
-      "name": "DENEME 3",
-      "surname": "DENEME 3",
-      "phoneNumber": "05555555553",
-      "notes": "DFKJSDLKFJSDLKFJSD",
-      "processIds": [
-        "1668857800331"
-      ]
+      "notes": "12345\n12345\n12345"
     }
   ],
   "process": [
     {
-      "id": "1668857124867",
-      "complaint": "BAŞ AĞRISI",
-      "treatment": "TOMOGRAFİ",
-      "medicine": [
-        "PAROL"
-      ]
-    },
-    {
-      "id": "1668857155304",
-      "complaint": "GRİP",
-      "treatment": "Kan tahlili yapıldı",
-      "medicine": [
-        "C vit",
-        " D vit",
-        " "
-      ]
-    },
-    {
-      "id": "1668857299280",
-      "complaint": "BEL AĞRISI",
+      "id": "1668875605173",
+      "complaint": "0",
       "treatment": "",
       "medicine": []
     },
     {
-      "id": "1668857800331",
-      "complaint": "BOĞAZ AĞRISI",
+      "id": "1668875651866",
+      "complaint": "1",
       "treatment": "",
       "medicine": []
     }

@@ -1,5 +1,6 @@
 import React /* , { useEffect, useState }*/ from "react";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import "../ASSETS/STYLES/GeneralStyle.css";
 import Loading from "../COMPANENTS/Loading";
 import Table from "@mui/material/Table";
@@ -10,10 +11,17 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import { Button } from "@mui/material";
 // import axios from "axios";
-import { useSelector } from "react-redux";
 
 const Home = (props) => {
 	const { patientState, appointmentState } = useSelector((state) => state);
+
+	const sortedAppointents = appointmentState.appointment?.sort(function (
+		i1,
+		i2
+	) {
+		return new Date(i2.date) - new Date(i1.date);
+	});
+
 	const navigate = useNavigate();
 
 	/* BEFORE REDUX START */
@@ -92,7 +100,7 @@ const Home = (props) => {
 							</TableRow>
 						)}
 
-						{appointmentState.appointment?.map((appointment) => {
+						{sortedAppointents.map((appointment) => {
 							//(appointment,index ) şeklinde yazılabileceği gibi aşağıda TableRow içinde key olarak da tanımlanabilir.
 							const searchPatient = patientState.patient?.find(
 								(patient) => patient.id === appointment.patientId
