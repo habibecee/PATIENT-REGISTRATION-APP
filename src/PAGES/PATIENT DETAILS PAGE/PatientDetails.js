@@ -10,14 +10,16 @@ import ListSubheader from "@mui/material/ListSubheader";
 import { Diversity1Sharp } from "@mui/icons-material";
 import { Button } from "@mui/material";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
+import { useSelector } from "react-redux";
 
 const PatientDetails = (props) => {
+	const { processState } = useSelector((state) => state);
 	const { patientId } = useParams();
 	const [patient, setPatient] = useState(null);
 	const [patientProcess, setPatientProcess] = useState([]);
 	const [openTreatmentModal, setOpenTreatmentModal] = useState(false);
 	const [selectedProcess, setSelectedProcess] = useState(null);
-	const [didUpdate, setDidUpdate] = useState(false);
+	// const [didUpdate, setDidUpdate] = useState(false);
 
 	useEffect(() => {
 		axios
@@ -41,7 +43,7 @@ const PatientDetails = (props) => {
 					.catch((err) => console.log(err));
 			})
 			.catch((err) => console.log(err));
-	}, [didUpdate]);
+	}, [/* didUpdate */ processState.process]);
 
 	if (patient === null) {
 		return <Loading />;
@@ -241,8 +243,8 @@ const PatientDetails = (props) => {
 				open={openTreatmentModal}
 				handleClose={() => setOpenTreatmentModal(false)}
 				process={selectedProcess}
-				didUpdate={didUpdate}
-				setDidUpdate={setDidUpdate}
+				// didUpdate={didUpdate}
+				// setDidUpdate={setDidUpdate}
 			/>
 		</div>
 	);

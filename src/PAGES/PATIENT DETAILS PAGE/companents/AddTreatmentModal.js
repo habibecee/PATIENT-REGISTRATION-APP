@@ -4,6 +4,8 @@ import CancelIcon from "@mui/icons-material/Cancel";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import actionTypes from "../../../REDUX/ACTIONS/actionTypes";
 
 const style = {
 	position: "absolute",
@@ -20,8 +22,9 @@ const style = {
 };
 
 const AddTreatmentModal = (props) => {
-	const { open, handleClose, Patient, process, didUpdate, setDidUpdate } =
+	const { open, handleClose, Patient, process /*, didUpdate, setDidUpdate */ } =
 		props;
+	const dispatch = useDispatch();
 
 	// const [medicineNo, setMedicineNo] = useState([1]);
 	const [administeredTreatment, setAdministeredTreatment] = useState("");
@@ -54,7 +57,12 @@ const AddTreatmentModal = (props) => {
 				setAdministeredTreatment("");
 				setMedicines("");
 				handleClose();
-				setDidUpdate(!didUpdate);
+				// setDidUpdate(!didUpdate);
+				// setDidUpdate kullanılmasının amacı patientDetails sayfasındaki useEffectin her güncellemede tetiklenmesini sağlamak içindi.Detay sayfasını processState e bağladığıktan sonra gerek kalmadı!!
+				dispatch({
+					type: actionTypes.EDIT_PROCESS,
+					payload: updatedProcess,
+				});
 			})
 			.catch((err) => console.log(err));
 	};
