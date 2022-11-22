@@ -15,11 +15,37 @@ import { Button } from "@mui/material";
 const Home = (props) => {
 	const { patientState, appointmentState } = useSelector((state) => state);
 
-	const sortedAppointents = appointmentState.appointment?.sort(function (
+	var sortedAppointments = appointmentState.appointment?.sort(function (
 		i1,
 		i2
 	) {
 		return new Date(i2.date) - new Date(i1.date);
+	});
+
+	const today = new Date();
+	//console.log("TODAY", today.getFullYear(), today.getMonth(), today.getDate());
+	sortedAppointments = sortedAppointments.filter((item) => {
+		const date = new Date(item.date);
+		//console.log(date.getFullYear(), date.getMonth(), date.getDate());
+
+		if (date.getFullYear() < today.getFullYear()) {
+			return false;
+		}
+
+		if (
+			date.getFullYear() === today.getFullYear() &&
+			date.getMonth() < today.getMonth()
+		) {
+			return false;
+		}
+
+		if (
+			date.getMonth() === today.getMonth() &&
+			date.getDate() < today.getDate()
+		) {
+			return false;
+		}
+		return true;
 	});
 
 	const navigate = useNavigate();
@@ -100,13 +126,21 @@ const Home = (props) => {
 							</TableRow>
 						)}
 
-						{sortedAppointents.map((appointment) => {
+						{sortedAppointments.map((appointment) => {
 							//(appointment,index ) şeklinde yazılabileceği gibi aşağıda TableRow içinde key olarak da tanımlanabilir.
 							const searchPatient = patientState.patient?.find(
 								(patient) => patient.id === appointment.patientId
 							);
+
+							const date = new Date(appointment.date);
+							var isNear = false;
+							//RANDEVU TARİHİ ŞU ANDAN DAHA BÜYÜK OLACAĞI İÇİN DATE, YANİ APPOİNTMENT.DATE - TODAY OLARAK ALIRIZ
+							if (date.getTime() - today.getTime() <= 300000) {
+								isNear = true;
+							}
 							return (
 								<TableRow
+									style={{ backgroundColor: isNear ? "#FFD372" : "#FFF5E4" }}
 									key={appointment?.id}
 									sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
 								>
