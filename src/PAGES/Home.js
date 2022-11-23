@@ -1,4 +1,4 @@
-import React /* , { useEffect, useState }*/ from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import "../ASSETS/STYLES/GeneralStyle.css";
@@ -14,6 +14,18 @@ import { Button } from "@mui/material";
 
 const Home = (props) => {
 	const { patientState, appointmentState } = useSelector((state) => state);
+	const [checkDate, setCheckDate] = useState(new Date());
+
+	useEffect(() => {
+		const interval = setInterval(() => {
+			setCheckDate(new Date());
+			console.log("...setInterval");
+		}, 20000);
+
+		return () => {
+			clearInterval(interval);
+		};
+	}, []);
 
 	var sortedAppointments = appointmentState.appointment?.sort(function (
 		i1,
@@ -135,9 +147,11 @@ const Home = (props) => {
 							const date = new Date(appointment.date);
 							var isNear = false;
 							//RANDEVU TARİHİ ŞU ANDAN DAHA BÜYÜK OLACAĞI İÇİN DATE, YANİ APPOİNTMENT.DATE - TODAY OLARAK ALIRIZ
-							if (date.getTime() - today.getTime() <= 300000) {
+							if (date.getTime() - checkDate.getTime() <= 300000) {
 								isNear = true;
 							}
+
+							if (checkDate.getTime() - date.getTime() > 60000) isNear = false;
 							return (
 								<TableRow
 									style={{ backgroundColor: isNear ? "#FFD372" : "#FFF5E4" }}
