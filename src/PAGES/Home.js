@@ -10,16 +10,24 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import { Button } from "@mui/material";
+import DeleteTwoToneIcon from "@mui/icons-material/DeleteTwoTone";
+import CreateTwoToneIcon from "@mui/icons-material/CreateTwoTone";
+import InfoIcon from "@mui/icons-material/Info";
+import api from "../API/api";
+import urls from "../URLS/urls";
+import { useDispatch } from "react-redux";
+import actionTypes from "../REDUX/ACTIONS/actionTypes";
 // import axios from "axios";
 
 const Home = (props) => {
 	const { patientState, appointmentState } = useSelector((state) => state);
 	const [checkDate, setCheckDate] = useState(new Date());
+	const dispatch = useDispatch();
 
 	useEffect(() => {
 		const interval = setInterval(() => {
 			setCheckDate(new Date());
-			console.log("...setInterval");
+			// console.log("...setInterval");
 		}, 20000);
 
 		return () => {
@@ -93,6 +101,16 @@ const Home = (props) => {
 		return <Loading />;
 	}
 
+	const deleteAppointment = (id) => {
+		console.log(id);
+		api
+			.delete(`${urls.appointment}/${id}`)
+			.then((res) => {
+				dispatch({ type: actionTypes.DELETE_APPOINTMENT, payload: id });
+			})
+			.catch((err) => console.log(err));
+	};
+
 	return (
 		<>
 			<div className="PageName">
@@ -127,7 +145,7 @@ const Home = (props) => {
 						</TableRow>
 					</TableHead>
 					<TableBody sx={{ backgroundColor: " #F0D9FF" }}>
-						{appointmentState.appointment?.length === 0 && (
+						{appointmentState?.appointment?.length === 0 && (
 							<TableRow
 								sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
 							>
@@ -166,7 +184,21 @@ const Home = (props) => {
 									<TableCell align="center">
 										{searchPatient?.phoneNumber}
 									</TableCell>
-									<TableCell align="center">...</TableCell>
+									<TableCell align="center">
+										<Button onClick={() => deleteAppointment(appointment.id)}>
+											<DeleteTwoToneIcon style={{ color: "red" }} />
+										</Button>
+										<Button>
+											<CreateTwoToneIcon style={{ color: "gray" }} />
+										</Button>
+										<Button
+											onClick={() =>
+												navigate(`/appointment-details/${appointment.id}`)
+											}
+										>
+											<InfoIcon style={{ color: "blue" }} />
+										</Button>
+									</TableCell>
 								</TableRow>
 							);
 						})}
