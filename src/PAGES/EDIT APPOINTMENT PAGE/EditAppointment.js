@@ -51,7 +51,7 @@ const EditAppointment = (props) => {
 						api
 							.get(urls.process)
 							.then((processRes) => {
-								const tempProcess = processRes.data?.find(
+								const tempProcess = processRes.data.find(
 									(item) => item.id == tempPatient.processIds
 								);
 								setProcess(tempProcess);
@@ -71,7 +71,7 @@ const EditAppointment = (props) => {
 	const handleSubmit = (event) => {
 		event.preventDefault();
 
-		if (date === "" || complaint === "") {
+		if (date == "" || complaint === "") {
 			alert("YOU MUST BE FILLED ALL FIELD THAT IN THIS FORM!!!");
 			return;
 		}
@@ -88,36 +88,44 @@ const EditAppointment = (props) => {
 			return;
 		}
 
-		const updatedAppointment = {
-			...appointment,
-			date: date,
-		};
+		if (appointment.date === date || process.complaint === complaint) {
+			return {
+				...appointment,
+				...process,
+			};
+		} else {
+			const updatedAppointment = {
+				...appointment,
+				date: date,
+			};
 
-		api
-			.put(`${urls.appointment}/${appointment.id}`, updatedAppointment)
-			.then((resAppointment) => {
-				dispatch({
-					type: actionTypes.EDIT_APPOINTMENT,
-					payload: updatedAppointment,
-				});
+			api
+				.put(`${urls.appointment}/${appointment.id}`, updatedAppointment)
+				.then((resAppointment) => {
+					dispatch({
+						type: actionTypes.EDIT_APPOINTMENT,
+						payload: updatedAppointment,
+					});
 
-				const updatedProcess = {
-					...process,
-					complaint: complaint,
-				};
-				api
-					.put(`${urls.process}/${process.id}`, updatedProcess)
-					.then((resProcess) => {
-						dispatch({
-							type: actionTypes.EDIT_PROCESS,
-							payload: updatedProcess,
-						});
-					})
-					.catch((errProcess) => console.log(errProcess));
+					const updatedProcess = {
+						...process,
+						complaint: complaint,
+					};
 
-				navigate("/");
-			})
-			.catch((errAppointment) => console.log(errAppointment));
+					api
+						.put(`${urls.process}/${process.id}`, updatedProcess)
+						.then((resProcess) => {
+							dispatch({
+								type: actionTypes.EDIT_PROCESS,
+								payload: updatedProcess,
+							});
+						})
+						.catch((errProcess) => console.log(errProcess));
+
+					navigate("/");
+				})
+				.catch((errAppointment) => console.log(errAppointment));
+		}
 	};
 
 	if (!appointments || !appointment || !patients || !patients || !process) {
@@ -150,7 +158,7 @@ const EditAppointment = (props) => {
 					/>
 
 					<TextField
-						// required
+						required
 						type={"number"}
 						id="outlined-required"
 						label="PHONE NUMBER"

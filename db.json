@@ -1,46 +1,20 @@
 {
-  "appointment": [
-    {
-      "id": "1670430446719",
-      "date": "2022-12-29T07:30",
-      "patientId": "1670430446718"
-    },
-    {
-      "id": "1670430563949",
-      "date": "2022-12-30T07:30",
-      "patientId": "1670430563948"
-    }
-  ],
+  "appointment": [],
   "patient": [
     {
-      "id": "1670430446718",
+      "id": "1670434668817",
       "name": "DENEME 0",
       "surname": "DENEME 0",
       "phoneNumber": "05555555550",
       "processIds": [
-        "1670430446717"
-      ]
-    },
-    {
-      "id": "1670430563948",
-      "name": "DENEME 1",
-      "surname": "DENEME 1",
-      "phoneNumber": "05555555551",
-      "processIds": [
-        "1670430563947"
+        "1670434668816"
       ]
     }
   ],
   "process": [
     {
-      "id": "1670430446717",
-      "complaint": "DENEME 0 ŞİKAYET EDİT EDİT 2 EDİT 3",
-      "treatment": "",
-      "medicine": []
-    },
-    {
-      "id": "1670430563947",
-      "complaint": "DENEME 1 ŞİKAYET",
+      "id": "1670434668816",
+      "complaint": "DENEME 0 EDIT 2",
       "treatment": "",
       "medicine": []
     }

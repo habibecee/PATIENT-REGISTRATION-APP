@@ -61,14 +61,14 @@ const processReducer = (state = initialState, action) => {
 		case actionTypes.EDIT_PROCESS:
 			//ESKİYİ ÇIKAR YENİYİ EKLE !!
 			const filteredEditProcess = state.process.filter(
-				(item) => item.id !== action.payload
+				(item) => item.id !== action.payload.id
 			);
 
 			filteredEditProcess.push(action.payload);
 
 			return {
 				...state,
-				process: filteredEditProcess,
+				appointment: [...filteredEditProcess, action.payload],
 			};
 
 		default:

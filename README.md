@@ -2,6 +2,8 @@
 
 <p> Patient registration app especially for doctors and also hospitals </p> </br>
 
+<p> BUGS WILL BE FIXED </p> </br>
+
 <p> This project is integrated to redux </p> </br>
 
 <p> Sorted appointments by dates, Changed the style of appointments with less than 5 minutes left and Removed old appointments from the list functions are added </p> </br>
@@ -38,4 +40,4 @@
 
 <h5> 5. DETAILS OF THE APPOINTMENT PAGE CREATED, EDIT AND DELETE APPOINTMENTS PROPERTIES ADDED ; </h5> </br>
 
-<!-- ![]() </br> -->
+![](./src/ASSETS/PROJECT%20VIEWS/screen-5.gif) </br>
