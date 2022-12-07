@@ -13,6 +13,7 @@ import urls from "./URLS/urls";
 import { useDispatch } from "react-redux";
 import actionTypes from "./REDUX/ACTIONS/actionTypes";
 import AppointmentDetails from "./PAGES/APPOINTMENT DETAILS PAGE/AppointmentDetails";
+import EditAppointment from "./PAGES/EDIT APPOINTMENT PAGE/EditAppointment";
 
 const App = () => {
 	const dispatch = useDispatch();
@@ -86,6 +87,10 @@ const App = () => {
 				/>
 				<Route path="/add-patient" element={<AddPatient />} />
 				<Route path="/add-appointment" element={<AddAppointment />} />
+				<Route
+					path="/edit-appointment/:appointmentId"
+					element={<EditAppointment />}
+				/>
 			</Routes>
 			<Footer />
 		</BrowserRouter>

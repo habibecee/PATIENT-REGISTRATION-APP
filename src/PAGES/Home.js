@@ -150,8 +150,7 @@ const Home = (props) => {
 								sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
 							>
 								<TableCell colSpan={5} align="center">
-									{" "}
-									THERE IS NO REGISTERED APPOINTMENT HERE{" "}
+									THERE IS NO REGISTERED APPOINTMENT HERE
 								</TableCell>
 							</TableRow>
 						)}
@@ -188,7 +187,11 @@ const Home = (props) => {
 										<Button onClick={() => deleteAppointment(appointment.id)}>
 											<DeleteTwoToneIcon style={{ color: "red" }} />
 										</Button>
-										<Button>
+										<Button
+											onClick={() =>
+												navigate(`/edit-appointment/${appointment.id}`)
+											}
+										>
 											<CreateTwoToneIcon style={{ color: "gray" }} />
 										</Button>
 										<Button
